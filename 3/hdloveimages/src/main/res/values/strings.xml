@@ -19,11 +19,14 @@
     <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
 
-
     <string name="codeversed_logo">Codeversed Logo</string>
     <string name="normal">Normal</string>
     <string name="big_text_style">Big Text Style</string>
     <string name="big_picture_style">Big Picture Style</string>
     <string name="inbox_style">Inbox Style</string>
     <string name="custom_view">Custom View</string>
+
+    <string name="title_activity_act_animation_views">ActAnimationViews</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

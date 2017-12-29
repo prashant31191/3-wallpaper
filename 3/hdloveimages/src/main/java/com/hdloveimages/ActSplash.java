@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.hdloveimages.animation.ActAnimationViews;
 
 public class ActSplash extends Activity
 {
@@ -154,7 +155,8 @@ int TIME = 3000;
 				public void run() {
 					// TODO Auto-generated method stub
 					finish();
-					Intent intent = new  Intent(ActSplash.this,ActNotification .class);
+					//Intent intent = new  Intent(ActSplash.this,ActNotification .class);
+					Intent intent = new  Intent(ActSplash.this,ActAnimationViews.class);
 					startActivity(intent);
 				}
 			},1000);
