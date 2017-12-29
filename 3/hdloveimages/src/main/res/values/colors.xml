@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="textcolorHeader">#FF4081</color>
+    <color name="textColorPrimary">#111111</color>
+    <color name="textColorSecondary">#88aa88</color>
+
+    <color name="switch_color">#9F4081</color>
+    <color name="track_color">#cF4081</color>
+</resources>

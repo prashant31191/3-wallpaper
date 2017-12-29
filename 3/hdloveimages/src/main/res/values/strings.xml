@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">HDLoveImages</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="sett_reminder_label">setting reminder label</string>
+    <string name="sett_reminder_time_content">setting reminder time content</string>
+    <string name="sett_reminder_time_label">setting reminder time label</string>
+    <string name="sett_reminder_desc">setting reminder desc</string>
+    <string name="sett_reminder_header">setting reminder header</string>
+
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <!-- -
+        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+
+
+
+    <string name="codeversed_logo">Codeversed Logo</string>
+    <string name="normal">Normal</string>
+    <string name="big_text_style">Big Text Style</string>
+    <string name="big_picture_style">Big Picture Style</string>
+    <string name="inbox_style">Inbox Style</string>
+    <string name="custom_view">Custom View</string>
+</resources>
