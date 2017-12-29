@@ -1,0 +1,188 @@
+{
+  "dashboard": [
+
+    {
+      "id": "13",
+      "name": "Most Popular",
+      "keyword": "Popular Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/302838_a77c8c0c.jpg"
+    },
+    {
+      "id": "1",
+      "name": "Cool",
+      "keyword": "Cool Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/227251_afbb4b23.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Featured",
+      "keyword": "Featured Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-29/310354_2f5e2a9b.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Love",
+      "keyword": "Love Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/193991_75616be5.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Vehicle",
+      "keyword": "Vehicle Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-29/320899_7b8d36cb.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Landscape",
+      "keyword": "Landscape Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/181768_42570381.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Design",
+      "keyword": "Design Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-11-28/Architecture_d9ec26be73.jpg"
+    },
+    {
+      "id": "7",
+      "name": "Girl",
+      "keyword": "Girl Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-11-28/Go_Explore_4428a5c0ac.jpg"
+    },
+    {
+      "id": "8",
+      "name": "Abstract",
+      "keyword": "Abstract Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/344700_beb82628.jpg"
+    },
+    {
+      "id": "9",
+      "name": "Space",
+      "keyword": "Space Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/276896_4e576e58.jpg"
+    },
+    {
+      "id": "10",
+      "name": "Animal",
+      "keyword": "Animal Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/37225_ac4c8afd.jpg"
+    },
+    {
+      "id": "11",
+      "name": "Text",
+      "keyword": "Text Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-11-28/words_55c4222d08.jpg"
+    },
+    {
+      "id": "12",
+      "name": "Other",
+      "keyword": "Other Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-08/330136_ab88d864.jpg"
+    },
+    {
+      "id": "14",
+      "name": "Search More",
+      "keyword": "Search Wallpaper",
+      "image": "http://img2.launcher.ksmobile.com/534x474/2016-12-29/321323_01e92378.jpg"
+    }
+  ],
+  "feature": [
+    {
+      "id": "12",
+      "name": "Mountain",
+      "keyword": "Mountain Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "13",
+      "name": "Blue",
+      "keyword": "Blue Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "14",
+      "name": "Sunset",
+      "keyword": "Sunset Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "15",
+      "name": "Tree",
+      "keyword": "Trees Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "16",
+      "name": "Water",
+      "keyword": "Water Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "17",
+      "name": "Natural",
+      "keyword": "Natural Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "18",
+      "name": "Sea",
+      "keyword": "Sea Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "19",
+      "name": "Food",
+      "keyword": "Food Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "20",
+      "name": "Snow",
+      "keyword": "Snow Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "21",
+      "name": "Flower",
+      "keyword": "Flower Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "22",
+      "name": "Entertainment",
+      "keyword": "Entertainment Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "23",
+      "name": "Sport",
+      "keyword": "Sport Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "24",
+      "name": "Clouds",
+      "keyword": "Clouds Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "25",
+      "name": "Festival",
+      "keyword": "Festival Wallpaper",
+      "image": "xxxxx"
+    },
+    {
+      "id": "26",
+      "name": "Other",
+      "keyword": "Other Wallpaper",
+      "image": "xxxxx"
+    }
+  ],
+  "appdata": {
+    "version": "1.0",
+    "name": "3 wallpaper",
+    "link": "xxxx-app-link"
+  },
+  "message": "Sucess",
+  "code": 200
+}

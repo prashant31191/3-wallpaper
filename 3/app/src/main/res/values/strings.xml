@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">3 Wallpaper</string>
+    <string name="app_version">1.0</string>
+    <string name="search">Search</string>
+    <string name="move">Move To Top</string>
+    <string name="clear">Clear</string>
+    <string name="clear_search">Clear Search</string>
+    <string name="move_to_top">Move To Top</string>
+    <string name="search_hint">Search Flickr</string>
+    <string name="download">Download</string>
+    <string name="view">set wallpaper or view</string>
+    <string name="open_in_app">Browse</string>
+    <string name="settings_description">this is description</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools = "http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_grey700"
+    tools:context="com.azwallpaper.GalleryActivity">
+
+
+    <fragment
+        android:layout_above="@+id/rlAds"
+        android:id="@+id/gallery_fragment"
+        android:name="com.azwallpaper.GalleryFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+<RelativeLayout
+    android:id="@+id/rlAds"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minHeight="1dp"
+    android:layout_alignParentBottom="true"
+    >
+
+
+
+</RelativeLayout>
+
+
+</RelativeLayout>
