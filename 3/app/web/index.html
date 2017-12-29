@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Send push notification</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <div class="wrapper">
+	<div class="container">
+		<h1>Send to Push notification</h1>
+		
+		<form class="form" name="sendToApp">
+			<input type="text" name="title" placeholder="Title">
+			<input type="text" name="message" placeholder="Message">
+			<input type="text" name="image" placeholder="Image url">
+			<!--<input type="password" placeholder="Password">   onclick="return foo();" -->
+			<button type="submit" value="submit" id="login-button2">Push Send to All</button>
+		</form>
+	</div>
+	
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		
+		
+		<li></li>
+		<li></li>
+		<li></li>
+		
+		<li></li>
+		<li></li>
+		<li></li>
+		
+	</ul>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  
+
+    <!-- <script  src="js/index.js"></script> -->
+	<a class="link">Link</a>
+	<script type=text/javascript>
+	
+	$("a.link").on("click",function(){
+         window.open('www.yourdomain.com','_blank');
+     });
+	
+	 $("#login-button2").click(function(event)
+	 {
+		
+		 
+		 var title = document.forms["sendToApp"]["title"].value;
+		 var message = document.forms["sendToApp"]["message"].value;
+		 var image = document.forms["sendToApp"]["image"].value;
+    
+		if (title == "") {
+			alert("Please enter title");
+			return false;
+		}
+		else if(message == "")
+		{
+			alert("Please enter message");
+			return false;
+		}
+		else
+		{
+			event.preventDefault(); 
+			 $('form').fadeOut(500);
+			 $('.wrapper').addClass('form-success');
+			 
+			 /*
+			 alert("Data is \n" + title);
+			 alert("Data is \n" + message);
+			 alert("Data is \n" + image);
+			 */
+			 
+			 openInNewTab("http://www.mimboard.com/wallpaperapp/sendToApp.php?title="+title+"&message="+message+"&image="+image);
+			 
+			 return true;
+		}
+		 
+		 
+	});
+	
+	function openInNewTab(url) {
+		var redirectWindow = window.open(url, '_blank');
+		redirectWindow.location;
+	}
+
+/*
+	function foo() 
+	{
+	login-button2.preventDefault();
+	 
+	 $('form').fadeOut(500);
+	 $('.wrapper').addClass('form-success');
+		alert("Notification send sucessfully");
+		return true;
+	}
+	*/
+	</script>
+
+
+
+
+</body>
+
+</html>

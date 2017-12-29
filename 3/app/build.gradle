@@ -1,0 +1,152 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        // These docs use an open ended version so that our plugin
+        // can be updated quickly in response to Android tooling updates
+
+        // We recommend changing it to the latest version from our changelog:
+        // https://docs.fabric.io/android/changelog.html#fabric-gradle-plugin
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'realm-android'
+
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+
+    jcenter() // includes the MoPub SDK and AVID library
+    maven { url "https://s3.amazonaws.com/moat-sdk-builds" }
+    maven { url 'https://maven.google.com' } // necessary for Android API 26
+}
+android {
+    compileSdkVersion 27
+    buildToolsVersion "27.0.0"
+    defaultConfig {
+        applicationId "com.azwallpaper"
+        minSdkVersion 18
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+
+
+        // Enabling multidex support.
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    // for the reduce size
+    // Some other configuration here...
+/*
+
+    splits {
+       */
+/* density {
+            enable true
+            reset()
+            include "mdpi", "hdpi", "xhdpi", "xxhdpi", "xxxhdpi"
+        }*//*
+
+
+        */
+/*abi {
+            enable true
+            reset()
+            include 'x86', 'armeabi', 'armeabi-v7a', 'mips'
+            universalApk false
+        }*//*
+
+    }
+*/
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:27.0.0'
+
+    compile 'com.android.support:support-v4:27.0.0'
+
+    compile 'com.android.support:recyclerview-v7:27.0.0'
+    // CardView
+    compile 'com.android.support:cardview-v7:27.0.0'
+
+    // for the image color
+    compile 'com.android.support:palette-v7:27.0.0'
+
+    // for the design lib
+    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+
+    // for the paralax image
+    //https://github.com/Narfss/ParallaxEverywhere
+    compile 'com.fmsirvent:parallaxeverywhere:1.0.4'
+
+    //compile 'com.android.volley:volley:1.0.0'
+    compile 'com.mcxiaoke.volley:library:1.0.18'
+
+    // for the image loading
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.squareup.picasso:picasso:2.3.2'
+
+    compile 'com.reginald.swiperefresh:library:1.1.1'
+    // for the multi dex
+    compile 'com.android.support:multidex:1.0.1'
+
+    compile 'com.google.code.gson:gson:2.8.2'
+
+// for the fabric crash analytic
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
+    // for the token and notification
+    compile 'com.google.firebase:firebase-messaging:11.0.1'
+
+    // for the google ads
+    compile 'com.google.android.gms:play-services-ads:11.0.1'
+
+
+    // for the mopub ads
+    /*compile('com.mopub:mopub-sdk:4.19.0@aar') {
+        transitive = true
+    }*/
+
+    // For banners
+    compile('com.mopub:mopub-sdk-banner:4.19.0@aar') {
+        transitive = true
+    }
+
+    // For rewarded videos. This will automatically also include interstitials
+    compile('com.mopub:mopub-sdk-rewardedvideo:4.19.0@aar') {
+        transitive = true
+    }
+
+}
+
+// Add to the bottom of the file
+apply plugin: 'com.google.gms.google-services'
+/*
+
+realm {
+    syncEnabled = true;
+}
+*/
