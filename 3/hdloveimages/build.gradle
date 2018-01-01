@@ -29,8 +29,8 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:support-v4:27.0.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:support-v4:27.0.0'
     compile 'com.android.support:appcompat-v7:27.0.0'
     compile 'com.google.android.gms:play-services-ads:11.0.2'
     testCompile 'junit:junit:4.12'
@@ -51,7 +51,7 @@ dependencies {
     // for the token and notification
     compile 'com.google.firebase:firebase-messaging:11.0.2'
 
-    // for the animation views
+    // for the animation views https://github.com/andkulikov/transitions-everywhere
     compile "com.andkulikov:transitionseverywhere:1.7.8"
 
     compile 'com.android.support:multidex:1.0.2'

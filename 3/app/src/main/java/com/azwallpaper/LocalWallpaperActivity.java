@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +32,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.example.library.FocusResizeAdapter;
+import com.example.library.FocusResizeScrollListener;
 import com.fmsirvent.ParallaxEverywhere.PEWImageView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -63,8 +69,10 @@ public class LocalWallpaperActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProgressBar progressBar;
     private GridLayoutManager mLayoutManager;
+
     private static final int COLUMN_NUM = 2;
     private GalleryAdapter mAdapter;
+    private  DefaultAnimatedAdapter defaultAdapter;
 
     RelativeLayout rlImage;
     TouchImageView ivFullScreen;
@@ -137,10 +145,10 @@ public class LocalWallpaperActivity extends AppCompatActivity {
 
 
             mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
+            mRecyclerView.setHasFixedSize(true);
             progressBar = (ProgressBar) findViewById(R.id.progressBar);
             progressBar.setVisibility(View.VISIBLE);
-            mRecyclerView.setHasFixedSize(true);
+
 
             if (getIntent() != null && getIntent().getExtras() != null) {
                 if (getIntent().getExtras().getString("id") != null) {
@@ -175,7 +183,7 @@ public class LocalWallpaperActivity extends AppCompatActivity {
                 if (realm != null) {
 
                     //insertValues();
-                    getWallpaperValues();
+                    getWallpaperValues(false);
 
                 } else {
                     App.showLog("=====realm===null==");
@@ -185,16 +193,15 @@ public class LocalWallpaperActivity extends AppCompatActivity {
             }
 
             setDisplayBanner();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     AdView mAdView;
     RelativeLayout rlAds;
-    private void setDisplayBanner()
-    {
+
+    private void setDisplayBanner() {
 
 
         //String deviceid = tm.getDeviceId();
@@ -255,17 +262,6 @@ public class LocalWallpaperActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // Respond to the action bar's Up/Home button
-            case android.R.id.home:
-                //NavUtils.navigateUpFromSameTask(this);
-                onBackPressed();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void insertValues() {
         try {
@@ -300,16 +296,14 @@ public class LocalWallpaperActivity extends AppCompatActivity {
                     }
                 }
             }, 1500);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
 
-    private void getWallpaperValues() {
+    private void getWallpaperValues(final boolean isGrid) {
         try {
             // for the insert value
             new Handler().postDelayed(new Runnable() {
@@ -332,24 +326,45 @@ public class LocalWallpaperActivity extends AppCompatActivity {
                     }
                     if (arrayListJsonImageModel != null) {
                         App.showLog("====arrayListJsonImageModel===" + arrayListJsonImageModel.size());
-                        mLayoutManager = new GridLayoutManager(LocalWallpaperActivity.this, COLUMN_NUM);
-                        mRecyclerView.setLayoutManager(mLayoutManager);
-                        mAdapter = new GalleryAdapter(LocalWallpaperActivity.this, arrayListJsonImageModel);
-                        mRecyclerView.setAdapter(mAdapter);
-                        progressBar.setVisibility(View.GONE);
+
+                        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+                        mRecyclerView.setHasFixedSize(true);
+
+                        if (isGrid == true) {
+                            mLayoutManager = new GridLayoutManager(LocalWallpaperActivity.this, COLUMN_NUM);
+
+                            mRecyclerView.setLayoutManager(mLayoutManager);
+                            mAdapter = new GalleryAdapter(LocalWallpaperActivity.this, arrayListJsonImageModel);
+                            mRecyclerView.setAdapter(mAdapter);
+                            progressBar.setVisibility(View.GONE);
+                        } else {
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(LocalWallpaperActivity.this);
+                            defaultAdapter = new DefaultAnimatedAdapter(LocalWallpaperActivity.this, (int) getResources().getDimension(R.dimen.custom_item_height), arrayListJsonImageModel);
+
+                            mRecyclerView.setLayoutManager(linearLayoutManager);
+                            mRecyclerView.setAdapter(defaultAdapter);
+                            mRecyclerView.addOnScrollListener(new FocusResizeScrollListener<>(defaultAdapter, linearLayoutManager));
+                            progressBar.setVisibility(View.GONE);
+
+
+                           /* mLayoutManager = new GridLayoutManager(LocalWallpaperActivity.this, COLUMN_NUM);
+                            mRecyclerView.setLayoutManager(mLayoutManager);
+                            mAdapter = new GalleryAdapter(LocalWallpaperActivity.this, arrayListJsonImageModel);
+                            mRecyclerView.setAdapter(mAdapter);
+                            progressBar.setVisibility(View.GONE);*/
+                        }
+
+
                     } else {
                         progressBar.setVisibility(View.GONE);
                     }
 
-                    if(arrayListJsonImageModel==null || arrayListJsonImageModel.size() <= 1)
-                    {
-                        if (App.checkDbFileIsExist() == true && realm !=null) {
+                    if (arrayListJsonImageModel == null || arrayListJsonImageModel.size() <= 1) {
+                        if (App.checkDbFileIsExist() == true && realm != null) {
                             RealmBackupRestore realmBackupRestore = new RealmBackupRestore(LocalWallpaperActivity.this, realm);
                             realmBackupRestore.restore();
 
-                        }
-                        else
-                        {
+                        } else {
                             App.downloadPhoto2();
                         }
                     }
@@ -362,7 +377,7 @@ public class LocalWallpaperActivity extends AppCompatActivity {
     }
 
 
-    public ArrayList<JsonImageModel> getDataWallpaper(String strFileName,String id,Realm realm) {
+    public ArrayList<JsonImageModel> getDataWallpaper(String strFileName, String id, Realm realm) {
         List<JsonImageModel> list = new ArrayList<>();
         try {
 
@@ -385,8 +400,7 @@ public class LocalWallpaperActivity extends AppCompatActivity {
             for (int k = 0; k < arrGsonResponseWallpaperList.size(); k++) {
                 App.sLog(k + "===arrGsonResponseWallpaperList=name=" + arrGsonResponseWallpaperList.get(k).filename);
 
-                if( arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel !=null && arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel.size() > 0)
-                {
+                if (arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel != null && arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel.size() > 0) {
                     App.sLog(k + "===arrGsonResponseWallpaperList=size=" + arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel.size());
                     list = arrGsonResponseWallpaperList.get(k).arrayListJsonImageModel;
 
@@ -400,7 +414,7 @@ public class LocalWallpaperActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  new ArrayList<JsonImageModel>(list);
+        return new ArrayList<JsonImageModel>(list);
     }
 
     private void setWallpaper() {
@@ -430,6 +444,61 @@ public class LocalWallpaperActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_list_grid, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Take appropriate action for each action item click
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                //NavUtils.navigateUpFromSameTask(this);
+                onBackPressed();
+                return true;
+
+            case R.id.menu_list_grid:
+                // search action
+
+                if (item.isChecked() == true) {
+                    App.showLog("=menu_list_grid===true=");
+                    item.setChecked(false);
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_grid_on_white_24dp));
+
+                    if (realm != null) {
+
+                        //insertValues();
+                        getWallpaperValues(false);
+
+                    } else {
+                        App.showLog("=====realm===null==");
+                    }
+                } else {
+                    App.showLog("=menu_list_grid===false=");
+                    item.setChecked(true);
+                    item.setIcon(ContextCompat.getDrawable(this, R.drawable.ic_list_white_24dp));
+
+                    if (realm != null) {
+
+                        //insertValues();
+                        getWallpaperValues(true);
+
+                    } else {
+                        App.showLog("=====realm===null==");
+                    }
+                }
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    // For the gallary adapter
     public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
 
         private Context mContext;   // get resource of this component
@@ -560,6 +629,118 @@ public class LocalWallpaperActivity extends AppCompatActivity {
                 return "blur()";
             }
         };
+    }
+
+
+    //for the list animated adapter
+
+    public class DefaultAnimatedAdapter extends FocusResizeAdapter<RecyclerView.ViewHolder> {
+
+        private List<JsonImageModel> items;
+
+        public DefaultAnimatedAdapter(Context context, int height, List<JsonImageModel> listData) {
+            super(context, height);
+            items = new ArrayList<>();
+            items = listData;
+        }
+
+        @Override
+        public int getFooterItemCount() {
+            // Return items size
+            return items.size();
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateFooterViewHolder(ViewGroup parent, int viewType) {
+            // Inflate your custom item layout
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_anim_list, parent, false);
+            return new DefaultCustomViewHolder(v);
+        }
+
+        @Override
+        public void onBindFooterViewHolder(RecyclerView.ViewHolder holder, int position) {
+            // Set your data into your custom layout
+            JsonImageModel customObject = items.get(position);
+            fill((DefaultCustomViewHolder) holder, customObject, position);
+        }
+
+        private void fill(DefaultCustomViewHolder holder, JsonImageModel customObject, final int position) {
+
+            holder.tvTitle.setText(position + " ♥ " + customObject.title);
+            holder.rlMainAnim.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //App.expand2(rlImage);
+                    rlImage.setVisibility(View.VISIBLE);//
+                    progressBar.setVisibility(View.VISIBLE);
+
+                    App.showLog("==img==" + items.get(position).thumbnail_url);
+
+                    Glide.with(LocalWallpaperActivity.this).load(items.get(position).image_path).asBitmap().into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            try {
+                                bitmap = resource;
+                                ivFullScreen.setImageBitmap(resource);
+                                progressBar.setVisibility(View.GONE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    Glide.with(LocalWallpaperActivity.this).load(items.get(position).image_path).placeholder(R.color.light_gray).into(ivFullScreen);
+
+                }
+            });
+
+            Glide.with(LocalWallpaperActivity.this)
+                    .load(customObject.thumbnail_url)
+                    .thumbnail(0.5f)
+                    .placeholder(R.color.light_gray)
+                    .into(holder.mImageView);
+        }
+
+        public class DefaultCustomViewHolder extends RecyclerView.ViewHolder {
+            public ImageView mImageView;
+            public TextView tvTitle;
+            public RelativeLayout rlMainAnim;
+
+
+            public DefaultCustomViewHolder(View itemView) {
+                super(itemView);
+                mImageView = (ImageView) itemView.findViewById(R.id.image_custom_item);
+                tvTitle = (TextView) itemView.findViewById(R.id.title_custom_item);
+                rlMainAnim = (RelativeLayout) itemView.findViewById(R.id.rlMainAnim);
+
+                tvTitle.setTypeface(App.getFont_Regular());
+            }
+        }
+
+
+        @Override
+        public void onItemBigResize(RecyclerView.ViewHolder viewHolder, int position, int dyAbs) {
+            // The focused item will resize to big size while is scrolling
+        }
+
+        @Override
+        public void onItemBigResizeScrolled(RecyclerView.ViewHolder viewHolder, int position, int dyAbs) {
+            // The focused item resize to big size when scrolled is finished
+        }
+
+        @Override
+        public void onItemSmallResizeScrolled(RecyclerView.ViewHolder viewHolder, int position, int dyAbs) {
+            // All items except the focused item will resize to small size when scrolled is finished
+        }
+
+        @Override
+        public void onItemSmallResize(RecyclerView.ViewHolder viewHolder, int position, int dyAbs) {
+            // All items except the focused item will resize to small size while is scrolling
+        }
+
+        @Override
+        public void onItemInit(RecyclerView.ViewHolder viewHolder) {
+            // Init first item when the view is loaded
+        }
     }
 
 

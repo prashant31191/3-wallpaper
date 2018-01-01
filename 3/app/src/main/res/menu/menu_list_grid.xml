@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_list_grid"
+        android:title="List/Grid"
+        android:icon="@drawable/ic_grid_on_white_24dp"
+        app:showAsAction="ifRoom"
+
+        />
+</menu>
